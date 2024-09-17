@@ -6,7 +6,8 @@
 	"scripts": {
 		"dev": "nodemon backend/server.js",
 		"start": "nodemon",
-		"build": "node build --output public"
+		"build": "node build --output public",
+		"vercel-build" :"echo hello"
 	},
 	"keywords": [],
 	"author": "",
