@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev": "nodemon backend/server.js",
 		"start": "nodemon",
-		"build": "npm install"
+		"build": "node build --output public"
 	},
 	"keywords": [],
 	"author": "",
