@@ -4,13 +4,13 @@ import { ENV_VARS } from "../config/envVars.js";
 
 export const protectRoute = async (req, res, next) => {
 	try {
-		const token = req.cookies["jwt-netflix"];
-
+		const token = req.headers["authorization"];
+		
 		if (!token) {
 			return res.status(401).json({ success: false, message: "Unauthorized - No Token Provided" });
 		}
 
-		const decoded = jwt.verify(token, ENV_VARS.JWT_SECRET);
+		const decoded = jwt.verify(token.split(" ")[1], ENV_VARS.JWT_SECRET);
 
 		if (!decoded) {
 			return res.status(401).json({ success: false, message: "Unauthorized - Invalid Token" });
