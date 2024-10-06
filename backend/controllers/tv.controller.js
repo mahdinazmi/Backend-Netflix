@@ -11,6 +11,15 @@ export async function getTrendingTv(req, res) {
 	}
 }
 
+export async function getPopularTv(req, res) {
+	try {
+		const data = await fetchFromTMDB("https://api.themoviedb.org/3/tv/popular?language=en-US&page=1");
+		res.json({ success: true, content: data.results });
+	} catch (error) {
+		res.status(500).json({ success: false, message: "Internal Server Error" });
+	}
+}
+
 export async function getTvTrailers(req, res) {
 	const { id } = req.params;
 	try {
