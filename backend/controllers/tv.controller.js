@@ -52,7 +52,17 @@ export async function getSimilarTvs(req, res) {
 	const { id } = req.params;
 	try {
 		const data = await fetchFromTMDB(`https://api.themoviedb.org/3/tv/${id}/similar?language=en-US&page=1`);
-		res.status(200).json({ success: true, similar: data.results });
+		res.status(200).json({ success: true, content: data.results });
+	} catch (error) {
+		res.status(500).json({ success: false, message: "Internal Server Error" });
+	}
+}
+
+export async function getRecommendationTvs(req, res) {
+	const { id } = req.params;
+	try {
+		const data = await fetchFromTMDB(`https://api.themoviedb.org/3/tv/${id}/recommendations?language=en-US&page=1`);
+		res.status(200).json({ success: true, content: data.results });
 	} catch (error) {
 		res.status(500).json({ success: false, message: "Internal Server Error" });
 	}
@@ -62,6 +72,16 @@ export async function getTvsByCategory(req, res) {
 	const { category } = req.params;
 	try {
 		const data = await fetchFromTMDB(`https://api.themoviedb.org/3/tv/${category}?language=en-US&page=1`);
+		res.status(200).json({ success: true, content: data.results });
+	} catch (error) {
+		res.status(500).json({ success: false, message: "Internal Server Error" });
+	}
+}
+
+export async function getTvKeywords(req, res) {
+	const { id } = req.params;
+	try {
+		const data = await fetchFromTMDB(`https://api.themoviedb.org/3/tv/${id}/keywords`);
 		res.status(200).json({ success: true, content: data.results });
 	} catch (error) {
 		res.status(500).json({ success: false, message: "Internal Server Error" });

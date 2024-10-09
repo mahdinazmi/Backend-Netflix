@@ -5,7 +5,9 @@ import {
 	getTvDetails,
 	getTvsByCategory,
 	getTvTrailers,
-	getPopularTv
+	getPopularTv,
+	getRecommendationTvs,
+	getTvKeywords
 } from "../controllers/tv.controller.js";
 
 const router = express.Router();
@@ -15,6 +17,8 @@ router.get("/popular", getPopularTv);
 router.get("/:id/trailers", getTvTrailers);
 router.get("/:id/details", getTvDetails);
 router.get("/:id/similar", getSimilarTvs);
+router.get("/:id/recommendations", getRecommendationTvs);
+router.get("/:id/keywords", getTvKeywords);
 router.get("/:category", getTvsByCategory);
 
 export default router;
